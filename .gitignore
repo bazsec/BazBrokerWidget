@@ -1,0 +1,6 @@
+.release/
+.history/
+*.bak
+.DS_Store
+Thumbs.db
+Libs/

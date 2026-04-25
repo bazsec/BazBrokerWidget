@@ -1,0 +1,19 @@
+## Interface: 120005
+## Title: BazBrokerWidget
+## Notes: Surfaces LibDataBroker feeds as dockable widgets in BazWidgetDrawers
+## Author: Baz4k
+## Version: 001
+## X-License: GPL v2
+## Category: Baz Suite
+## X-Category: Data Broker
+## Dependencies: BazCore, BazWidgetDrawers
+## IconTexture: 134390
+## SavedVariables: BazBrokerWidgetDB
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+Core.lua
+Widget.lua
+UserGuide.lua
