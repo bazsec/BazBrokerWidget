@@ -105,6 +105,108 @@ function addon:PrintFeedList()
 end
 
 ---------------------------------------------------------------------------
+-- Options pages
+---------------------------------------------------------------------------
+
+local function GetLandingPage()
+    return BazCore:CreateLandingPage("BazBrokerWidget", {
+        subtitle    = "LibDataBroker → BazWidgetDrawers bridge",
+        description = "Surfaces every LibDataBroker (LDB) feed as its own " ..
+            "dockable widget inside BazWidgetDrawers. Any addon that " ..
+            "publishes via LDB — Bagnon, Recount, BugSack, Skada, and " ..
+            "many others — appears automatically as a draggable widget " ..
+            "you can show, hide, reorder, or float.",
+        features = "One BWD widget per LDB feed. " ..
+            "Live updates on text/value/icon/label changes. " ..
+            "Late-registering feeds are picked up automatically. " ..
+            "Click forwards to the feed's launcher action; hover shows " ..
+            "the feed's native tooltip.",
+        guide = {
+            { "Install an LDB addon", "Anything with a minimap data button or LDB-publishing description" },
+            { "Open BazWidgetDrawers settings", "Each feed appears as its own widget on the Widgets page" },
+            { "Enable / drag / float", "Use BWD's normal widget controls" },
+            { "/bbw list", "Prints every feed currently registered for inspection" },
+        },
+    })
+end
+
+local function GetSettingsPage()
+    return {
+        name = "Settings",
+        type = "group",
+        args = {
+            intro = {
+                order = 0.1,
+                type  = "lead",
+                text  = "Configure how each LibDataBroker feed renders inside its widget.",
+            },
+            displayHeader = {
+                order = 1,
+                type  = "header",
+                name  = "Display",
+            },
+            showIcon = {
+                order = 2,
+                type  = "toggle",
+                name  = "Show Icon",
+                desc  = "Show the feed's icon at the left of each widget.",
+                get   = function() return addon:GetSetting("showIcon") ~= false end,
+                set   = function(_, val) addon:SetSetting("showIcon", val) end,
+            },
+            showLabel = {
+                order = 3,
+                type  = "toggle",
+                name  = "Show Label",
+                desc  = "Show the feed's label (e.g. addon name) next to the value.",
+                get   = function() return addon:GetSetting("showLabel") ~= false end,
+                set   = function(_, val) addon:SetSetting("showLabel", val) end,
+            },
+            emptyText = {
+                order = 4,
+                type  = "input",
+                name  = "Empty-Value Placeholder",
+                desc  = "Shown when a feed has no current value (e.g. before its first update).",
+                get   = function() return addon:GetSetting("emptyText") or "—" end,
+                set   = function(_, val) addon:SetSetting("emptyText", val) end,
+            },
+
+            discoveryHeader = {
+                order = 10,
+                type  = "header",
+                name  = "Discovery",
+            },
+            autoEnableNew = {
+                order = 11,
+                type  = "toggle",
+                name  = "Auto-Enable New Feeds",
+                desc  = "When a new LDB feed registers (after login), enable its widget automatically. Disable to let new feeds default to off.",
+                get   = function() return addon:GetSetting("autoEnableNew") ~= false end,
+                set   = function(_, val) addon:SetSetting("autoEnableNew", val) end,
+            },
+            rescanFeeds = {
+                order = 12,
+                type  = "execute",
+                name  = "Rescan Feeds",
+                desc  = "Re-check the LDB registry and create widgets for any feeds that were missed.",
+                func  = function()
+                    if addon.RescanFeeds then addon:RescanFeeds() end
+                    addon:Print("Rescan complete.")
+                end,
+            },
+            printFeeds = {
+                order = 13,
+                type  = "execute",
+                name  = "Print Feed List",
+                desc  = "Print every LDB feed currently registered to the chat frame.",
+                func  = function()
+                    if addon.PrintFeedList then addon:PrintFeedList() end
+                end,
+            },
+        },
+    }
+end
+
+---------------------------------------------------------------------------
 -- Lifecycle
 ---------------------------------------------------------------------------
 
@@ -114,6 +216,16 @@ end
 LDB.RegisterCallback(addon, "LibDataBroker_DataObjectCreated", function(_, name, dataobj)
     CreateWidgetForFeed(name, dataobj)
 end)
+
+addon.config.onLoad = function(self)
+    -- Bottom tab + landing page
+    BazCore:RegisterOptionsTable(ADDON_NAME, GetLandingPage)
+    BazCore:AddToSettings(ADDON_NAME, "BazBrokerWidget")
+
+    -- General Settings sub-page
+    BazCore:RegisterOptionsTable(ADDON_NAME .. "-Settings", GetSettingsPage)
+    BazCore:AddToSettings(ADDON_NAME .. "-Settings", "General Settings", ADDON_NAME)
+end
 
 BazCore:QueueForLogin(function()
     -- Initial pass: pick up everything already registered at login
