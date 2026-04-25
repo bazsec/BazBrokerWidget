@@ -168,11 +168,15 @@ function addon:BuildFeedWidget(name, dataobj)
         designWidth  = DESIGN_WIDTH,
         designHeight = DESIGN_HEIGHT,
         frame        = frame,
-        -- BWD's Settings list reads widget.tags and renders each as a
-        -- coloured badge after the label. We mark every LDB-bridged
-        -- widget so users can spot them at a glance — they're not
-        -- "real" Baz Suite widgets, they're whatever third-party
-        -- addon (Bagnon, Recount, etc.) is publishing the feed.
+        -- BWD's Settings list groups widgets by `source`. All LDB feeds
+        -- collapse into a single "LibDataBroker" category regardless of
+        -- which third-party addon publishes them — otherwise every
+        -- LDB-publishing addon (Bagnon, Recount, BugSack, …) would
+        -- spawn its own one-widget category.
+        source = "LibDataBroker",
+        -- Static badge after the label so the user can also see at a
+        -- glance which widgets came from LDB even when the group is
+        -- expanded inline.
         tags = { { text = "LDB", color = "60a0ff" } },
         GetStatusText = function()
             return frame.value:GetText() or "", 1, 0.82, 0
