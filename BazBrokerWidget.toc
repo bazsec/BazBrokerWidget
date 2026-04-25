@@ -2,10 +2,11 @@
 ## Title: BazBrokerWidget
 ## Notes: Surfaces LibDataBroker feeds as dockable widgets in BazWidgetDrawers
 ## Author: Baz4k
-## Version: 001
+## Version: 002
 ## X-License: GPL v2
 ## Category: Baz Suite
 ## X-Category: Data Broker
+## X-Curse-Project-ID: 1524619
 ## Dependencies: BazCore, BazWidgetDrawers
 ## IconTexture: 134390
 ## SavedVariables: BazBrokerWidgetDB
