@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
--- BazBrokerWidget — per-feed widget factory
+-- BazBrokerWidget - per-feed widget factory
 --
 -- For every LibDataBroker data object, build a small horizontal widget:
 --
@@ -62,7 +62,7 @@ local function ApplyText(widget, dataobj)
         end
     end
     if not valueText or valueText == "" then
-        valueText = addon:GetSetting("emptyText") or "—"
+        valueText = addon:GetSetting("emptyText") or "-"
     end
     widget.value:SetText(valueText)
 end
@@ -113,7 +113,7 @@ local function BuildFrame(name, dataobj)
     value:SetTextColor(1, 0.82, 0)
     frame.value = value
 
-    -- Don't let the label overlap the value — clamp label to the gap
+    -- Don't let the label overlap the value - clamp label to the gap
     label:SetPoint("RIGHT", value, "LEFT", -PAD, 0)
     label:SetWordWrap(false)
     label:SetNonSpaceWrap(false)
@@ -170,8 +170,8 @@ function addon:BuildFeedWidget(name, dataobj)
         frame        = frame,
         -- BWD's Settings list groups widgets by `source`. All LDB feeds
         -- collapse into a single "LibDataBroker" category regardless of
-        -- which third-party addon publishes them — otherwise every
-        -- LDB-publishing addon (Bagnon, Recount, BugSack, …) would
+        -- which third-party addon publishes them - otherwise every
+        -- LDB-publishing addon (Bagnon, Recount, BugSack, ...) would
         -- spawn its own one-widget category.
         source = "LibDataBroker",
         -- Static badge after the label so the user can also see at a

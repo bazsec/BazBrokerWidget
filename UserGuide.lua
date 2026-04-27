@@ -14,7 +14,7 @@ BazCore:RegisterUserGuide("BazBrokerWidget", {
             blocks = {
                 { type = "lead", text = "If you have an addon that publishes a LibDataBroker feed (Bagnon, Recount, Skada, BugSack, almost anything with a minimap data button), BazBrokerWidget mirrors that feed as a small icon + label + value widget inside BazWidgetDrawers." },
                 { type = "h2", text = "What is LibDataBroker?" },
-                { type = "paragraph", text = "LibDataBroker (LDB) is a shared library that lots of addons use to publish data — a numeric value, a status string, an icon — without caring how it gets displayed. Display addons like Bazooka, ChocolateBar, or TitanPanel consume those feeds and arrange them in bars. BazBrokerWidget is a display, scoped to fit inside the BazWidgetDrawers drawer." },
+                { type = "paragraph", text = "LibDataBroker (LDB) is a shared library that lots of addons use to publish data - a numeric value, a status string, an icon - without caring how it gets displayed. Display addons like Bazooka, ChocolateBar, or TitanPanel consume those feeds and arrange them in bars. BazBrokerWidget is a display, scoped to fit inside the BazWidgetDrawers drawer." },
                 { type = "note", style = "tip", text = "You don't need to do anything special to use it. Install BazBrokerWidget alongside any LDB-publishing addon and the feeds appear automatically in the BWD widget list." },
             },
         },
@@ -26,11 +26,11 @@ BazCore:RegisterUserGuide("BazBrokerWidget", {
                 { type = "list", items = {
                     "Click a widget's |cffffd700Enable|r toggle to show/hide it",
                     "Drag widgets in the drawer to reorder",
-                    "Right-click the widget header → Float to detach it from the drawer",
+                    "Right-click the widget header > Float to detach it from the drawer",
                     "Click the widget itself to invoke the feed's normal action (open the addon's UI, etc.)",
                     "Hover for the feed's tooltip",
                 }},
-                { type = "note", style = "info", text = "Feeds register at different times during boot — some on PLAYER_LOGIN, some on first event. BazBrokerWidget listens for late registrations and adds widgets as they appear, so you don't need to /reload after enabling another addon." },
+                { type = "note", style = "info", text = "Feeds register at different times during boot - some on PLAYER_LOGIN, some on first event. BazBrokerWidget listens for late registrations and adds widgets as they appear, so you don't need to /reload after enabling another addon." },
             },
         },
         {
@@ -51,7 +51,7 @@ BazCore:RegisterUserGuide("BazBrokerWidget", {
             blocks = {
                 { type = "list", items = {
                     "Install Bagnon, Recount, BugSack, or any addon with an \"LDB feed\" listed in its description",
-                    "If a widget appears empty, the feed may not have populated its value yet — interact with that addon once",
+                    "If a widget appears empty, the feed may not have populated its value yet - interact with that addon once",
                     "Use BWD's per-widget enable to hide noisy feeds you don't care about",
                 }},
             },

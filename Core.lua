@@ -1,9 +1,9 @@
 ---------------------------------------------------------------------------
--- BazBrokerWidget — bridge LibDataBroker-1.1 feeds into BazWidgetDrawers
+-- BazBrokerWidget - bridge LibDataBroker-1.1 feeds into BazWidgetDrawers
 --
 -- Each LDB data object (`type = "data source"` and `type = "launcher"`)
 -- becomes its own dockable widget. The user enables/disables/reorders
--- them like any other BWD widget — no special UI for managing the list
+-- them like any other BWD widget - no special UI for managing the list
 -- because BWD already has all of that.
 ---------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ addon = BazCore:RegisterAddon(ADDON_NAME, {
     defaults = {
         showLabel       = true,   -- show the feed's label next to its value
         showIcon        = true,   -- show the feed's icon
-        emptyText       = "—",    -- text shown when a feed has no value yet
+        emptyText       = "-",    -- text shown when a feed has no value yet
         autoEnableNew   = true,   -- auto-enable new feeds discovered after login
     },
 
@@ -53,7 +53,7 @@ local pendingByName = {}  -- [feedName] = dataobj queued before BWD was ready
 
 if not LDB then
     -- LDB couldn't load (extremely unlikely since we embed it). Bail
-    -- silently — the addon is still loaded but registers nothing.
+    -- silently - the addon is still loaded but registers nothing.
     return
 end
 
@@ -64,7 +64,7 @@ end
 local function CreateWidgetForFeed(name, dataobj)
     if registered[name] then return end
     if not (addon.BuildFeedWidget) then
-        -- Widget.lua hasn't loaded yet — shouldn't happen given TOC order,
+        -- Widget.lua hasn't loaded yet - shouldn't happen given TOC order,
         -- but defensive: queue and try again from RescanFeeds.
         pendingByName[name] = dataobj
         return
@@ -96,7 +96,7 @@ function addon:PrintFeedList()
         count = count + 1
         local typ = dataobj.type or "unknown"
         local label = dataobj.label or name
-        print(string.format("  |cff8888ff%d.|r %s |cff999999(%s)|r — %s",
+        print(string.format("  |cff8888ff%d.|r %s |cff999999(%s)|r - %s",
             count, name, typ, label))
     end
     if count == 0 then
@@ -110,11 +110,11 @@ end
 
 local function GetLandingPage()
     return BazCore:CreateLandingPage("BazBrokerWidget", {
-        subtitle    = "LibDataBroker → BazWidgetDrawers bridge",
+        subtitle    = "LibDataBroker > BazWidgetDrawers bridge",
         description = "Surfaces every LibDataBroker (LDB) feed as its own " ..
             "dockable widget inside BazWidgetDrawers. Any addon that " ..
-            "publishes via LDB — Bagnon, Recount, BugSack, Skada, and " ..
-            "many others — appears automatically as a draggable widget " ..
+            "publishes via LDB - Bagnon, Recount, BugSack, Skada, and " ..
+            "many others - appears automatically as a draggable widget " ..
             "you can show, hide, reorder, or float.",
         features = "One BWD widget per LDB feed. " ..
             "Live updates on text/value/icon/label changes. " ..
@@ -166,7 +166,7 @@ local function GetSettingsPage()
                 type  = "input",
                 name  = "Empty-Value Placeholder",
                 desc  = "Shown when a feed has no current value (e.g. before its first update).",
-                get   = function() return addon:GetSetting("emptyText") or "—" end,
+                get   = function() return addon:GetSetting("emptyText") or "-" end,
                 set   = function(_, val) addon:SetSetting("emptyText", val) end,
             },
 
