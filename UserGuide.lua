@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: GPL-2.0-or-later
 ---------------------------------------------------------------------------
 -- BazBrokerWidget User Manual
 -- Registered with BazCore so it appears in the User Manual tab.

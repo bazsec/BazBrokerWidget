@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: GPL-2.0-or-later
 ---------------------------------------------------------------------------
 -- BazBrokerWidget - bridge LibDataBroker-1.1 feeds into BazWidgetDrawers
 --
