@@ -2,7 +2,7 @@
 
 # BazBrokerWidget
 
-[![Part of BazAddons](https://img.shields.io/badge/Part_of-BazAddons-b8924a?labelColor=2a2519)](https://bazaddons.com) ![WoW](https://img.shields.io/badge/WoW-12.0_Midnight-blue) ![License](https://img.shields.io/badge/License-GPL_v2-green) ![Version](https://img.shields.io/github/v/tag/BazAddons/BazBrokerWidget?label=Version&color=orange&sort=date)
+[![Part of BazAddons](https://img.shields.io/badge/Part_of-BazAddons-b8924a?labelColor=2a2519)](https://bazaddons.com) [![WoW](https://img.shields.io/badge/WoW-12.0_Midnight-blue)](https://worldofwarcraft.blizzard.com/en-us/midnight) ![License](https://img.shields.io/badge/License-GPL_v2-green) ![Version](https://img.shields.io/github/v/tag/BazAddons/BazBrokerWidget?label=Version&color=orange&sort=date)
 
 Bridges [LibDataBroker-1.1](https://github.com/tekkub/libdatabroker-1-1) feeds into [BazWidgetDrawers](https://www.curseforge.com/wow/addons/bazwidgetdrawers). Every LDB-publishing addon (Bagnon, Recount, Skada, BugSack, almost anything with a minimap data button) shows up as its own dockable widget you can position, reorder, or disable like any other BWD widget.
 
